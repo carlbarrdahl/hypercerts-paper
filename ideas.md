@@ -1,0 +1,22 @@
+# Notes on hypercerts v.2 architecture
+
+- erc4626 vault for projects
+  - shares can be minted to stewards, project owners, contributors
+  - early funders can buy shares by calling deposit
+  - grants and other funding can fund vault without minting shares
+  - this mechanism increases the value of the shares
+  - the vault contains a string for metadata (ipfs hash) where details about the project is stored
+- eas attestations can be created to the project vault:
+  - data stored in IPFS (storacha?)
+  - work claims: self-reported impact work that has been done
+  - verifications / evaluations: organizations measure and evalutate said work claims
+  - resources can be attached to work claims and/or verifications: endorsements / reviews can point to any of the other attestation types above
+- off-chain attestations are created as drafts and can be published to on-chain
+  - stored in a hypercerts postgres db
+  - this is also where private attestations are kept
+- this creates a bundle or a network graph of attestations and impact created and evaluated with supporting evidence.
+- smart accounts for accounts (hyper account is canonical and can work across platforms and organization multisig with zodiac module for roles as well as metadata)
+- 1 evm network is chosen as the canonical
+- ponder indexer indexers all data (organization smart account metadata, attestations, vaults, etc): it also handles multi chain
+- the indexer creates embeddings and minhash/simhash to discover potential double claims as well as provinging powerful search. it also handles geojson for powerful spatial queries
+-

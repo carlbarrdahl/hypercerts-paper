@@ -61,10 +61,6 @@ The architecture implements the Generalized Impact Evaluator framework by distri
 
 **Embedding Generation**: The system generates vector embeddings for attestation text using transformer-based language models. These embeddings enable semantic similarity search and help identify potentially duplicate or related claims across different projects and contributors.
 
-**MinHash and SimHash**: Implements locality-sensitive hashing algorithms to efficiently detect near-duplicate content at scale. MinHash identifies similar sets of contributors or project dependencies, while SimHash detects similar textual descriptions or claims.
-
-**Duplicate Resolution Workflows**: When potential duplicates are detected, the system creates flagged review queues where human evaluators can determine whether claims represent legitimate overlapping work, complementary contributions, or actual gaming attempts. This hybrid automated-human approach balances scale with accuracy.
-
 ## 3.3 Logic Layer Architecture
 
 ### 3.3.1 ERC4626 Vault System
@@ -149,42 +145,3 @@ Score(agent) = α × Forward_Score(agent) + (1-α) × Reverse_Score(agent)
 - Edge type multipliers (relative importance of different contribution types)
 - Temporal decay rates (how quickly old contributions lose weight)
 - Personalization vectors (which outcomes to emphasize)
-
-### 3.4.3 Reward Distribution System
-
-**Score Normalization**: Attribution scores are normalized to sum to 1.0 within each evaluation scope, enabling proportional distribution of fixed reward pools.
-
-**Multi-pool Support**: The system can simultaneously manage multiple reward pools with different distribution criteria:
-
-- Project-specific pools funded by project revenues
-- Cross-project pools for infrastructure contributions
-- Time-bounded pools for specific funding rounds
-- Stakeholder-specific pools (e.g., only for certain contributor classes)
-
-**Continuous vs. Batch Distribution**: Supports both continuous reward distribution (as new funding arrives) and batch distribution (periodic reward rounds with accumulated funds).
-
-**Counterfactual Analysis**: Provides tools for analyzing how reward distributions would change under different parameter settings or data scenarios, enabling communities to understand the effects of their governance decisions.
-
-## 3.5 Integration and Interoperability
-
-### 3.5.1 External System Integration
-
-**API Layer**: RESTful and GraphQL APIs enable integration with existing project management tools, version control systems, and funding platforms. Standard schemas facilitate data exchange while preserving system autonomy.
-
-**Webhook System**: Real-time notifications enable responsive integration with external systems. Projects can receive notifications about new funding, attestations, or evaluation updates to trigger automated workflows.
-
-**Bridge Protocols**: Standardized protocols enable other systems to contribute data to or consume data from the Hypercerts system while maintaining data sovereignty and user privacy preferences.
-
-### 3.5.2 Governance Integration
-
-**Modular Governance**: Different system components can be governed independently, enabling specialized expertise while maintaining system coherence:
-
-- Technical parameters (algorithm settings) governed by technical experts
-- Evaluation criteria governed by domain communities
-- Funding allocation governed by stakeholder representatives
-
-**Upgrade Pathways**: Smart contract architecture supports upgrades to evaluation algorithms and system components while preserving data continuity and user consent.
-
-**Exit Rights**: Participants maintain rights to export their data and migrate to alternative systems, preventing lock-in and ensuring competitive pressure for system quality.
-
-The architecture's modularity and standards-based design enable it to function as infrastructure for a broader ecosystem of impact funding tools while providing a complete, integrated system for organizations that prefer comprehensive solutions. This balance between integration and modularity reflects the core design philosophy of enabling coordination without requiring consensus on all system aspects.
